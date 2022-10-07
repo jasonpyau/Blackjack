@@ -99,7 +99,14 @@ public class Blackjack {
     public static double askBet(double bet, double money, Scanner scan) {
         System.out.println("\n\n\n\n\n\n\n\n\n\nMoney: $"+(int)money);
         System.out.print("Enter an amount to bet: $");
-        bet = scan.nextInt();
+        try {
+            bet = scan.nextInt();
+        }
+        catch (Exception e) {
+            scan.nextLine();
+            System.out.println("Invalid Input. Input an integer.");
+            bet = askBet(bet,money,scan);
+        }
         if (bet>0) {
             if (money>=bet) {
                 return bet;
